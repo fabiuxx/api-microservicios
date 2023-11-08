@@ -30,7 +30,7 @@ public class AppLogger {
 
     public void trace(Throwable thr, String fmt, Object... args) {
         String msg = String.format(fmt, args);
-        if (thr != null) {
+        if (thr == null) {
             wrapped.trace(msg);
         } else {
             wrapped.trace(msg, thr);
@@ -43,7 +43,7 @@ public class AppLogger {
 
     public void debug(Throwable thr, String fmt, Object... args) {
         String msg = String.format(fmt, args);
-        if (thr != null) {
+        if (thr == null) {
             wrapped.debug(msg);
         } else {
             wrapped.debug(msg, thr);
@@ -56,7 +56,7 @@ public class AppLogger {
 
     public void warning(Throwable thr, String fmt, Object... args) {
         String msg = String.format(fmt, args);
-        if (thr != null) {
+        if (thr == null) {
             wrapped.warn(msg);
         } else {
             wrapped.warn(msg, thr);
@@ -69,7 +69,7 @@ public class AppLogger {
 
     public void error(Throwable thr, String fmt, Object... args) {
         String msg = String.format(fmt, args);
-        if (thr != null) {
+        if (thr == null) {
             wrapped.error(msg);
         } else {
             wrapped.error(msg, thr);
@@ -82,7 +82,7 @@ public class AppLogger {
 
     public void info(Throwable thr, String fmt, Object... args) {
         String msg = String.format(fmt, args);
-        if (thr != null) {
+        if (thr == null) {
             wrapped.info(msg);
         } else {
             wrapped.info(msg, thr);

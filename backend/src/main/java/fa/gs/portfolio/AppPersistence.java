@@ -45,7 +45,7 @@ public class AppPersistence {
     private static final String PROPERTY_NAME_HIBERNATE_JDBC_BATCH_SIZE = "hibernate.jdbc.batch_size";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
 
-    @Bean(destroyMethod = "close")
+    @Bean(name = "datasource", destroyMethod = "close")
     @Scope(scopeName = "singleton")
     public DataSource datasource() throws IOException {
         // Inicializar driver.
@@ -76,14 +76,14 @@ public class AppPersistence {
         return new HikariDataSource(config);
     }
 
-    @Bean
+    @Bean(name = "jpaTransactionManager")
     public JpaTransactionManager jpaTransactionManager() throws IOException {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());
         return transactionManager;
     }
 
-    @Bean
+    @Bean(name = "entityManager")
     public EntityManager entityManager() throws IOException {
         LocalContainerEntityManagerFactoryBean factory = entityManagerFactoryBean();
         EntityManagerFactory emFactory = factory.getObject();
@@ -93,7 +93,7 @@ public class AppPersistence {
         return null;
     }
 
-    @Bean
+    @Bean(name = "entityManagerFactoryBean")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() throws IOException {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setJpaVendorAdapter(vendorAdaptor());

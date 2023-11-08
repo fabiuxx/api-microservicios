@@ -1,8 +1,8 @@
 package fa.gs.portfolio;
 
-import fa.gs.portfolio.app.base.DatabaseService;
-import fa.gs.portfolio.app.productos.ProductosDatabaseService;
-import fa.gs.portfolio.app.stock.StockDatabaseService;
+import fa.gs.portfolio.app.base.DatabaseInitializer;
+import fa.gs.portfolio.app.productos.ProductosDatabaseInitializer;
+import fa.gs.portfolio.app.stock.StockDatabaseInitializer;
 import java.util.Objects;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,15 +36,12 @@ public class Main implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        // Inicializar parametros generales.
-        log.info("Inicializando parametros de aplicacion ...");
-
         // App: productos.
         if (Objects.equals(appParameters.getAppName(), "productos")) {
             try {
-                DatabaseService databaseService = beansFactory.getBean(ProductosDatabaseService.class);
-                databaseService.init();
-                log.info("servicio de base de datos para servicio: productos [OK]");
+                DatabaseInitializer initializer = beansFactory.getBean(ProductosDatabaseInitializer.class);
+                initializer.init();
+                log.info("inicializacion de base de datos para servicio: productos [OK]");
             } catch (Throwable thr) {
                 log.error(thr, "Ocurrio un error inicializando servicio de base de datos para servicio: productos.");
                 throw new Exception("error", thr);
@@ -54,9 +51,9 @@ public class Main implements ApplicationRunner {
         // App: stock.
         if (Objects.equals(appParameters.getAppName(), "stock")) {
             try {
-                DatabaseService databaseService = beansFactory.getBean(StockDatabaseService.class);
-                databaseService.init();
-                log.info("servicio de base de datos para servicio: stock [OK]");
+                DatabaseInitializer initializer = beansFactory.getBean(StockDatabaseInitializer.class);
+                initializer.init();
+                log.info("inicializacion de base de datos para servicio: stock [OK]");
             } catch (Throwable thr) {
                 log.error(thr, "Ocurrio un error inicializando servicio de base de datos para servicio: stock.");
                 throw new Exception("error", thr);
