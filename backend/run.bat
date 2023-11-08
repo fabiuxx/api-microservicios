@@ -1,0 +1,1 @@
+java -server -jar ./target/api-microservices-0.0.1.jar --debug --app.name="%1"
