@@ -1,0 +1,6 @@
+flask >= 2.0.1
+flask-cors >= 4.0.0
+requests >= 2.31.0
+opentelemetry-distro == 0.38b0
+opentelemetry-exporter-otlp == 1.17.0
+opentelemetry-exporter-otlp-proto-grpc == 1.17.0

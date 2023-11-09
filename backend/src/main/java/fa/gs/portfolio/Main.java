@@ -1,7 +1,10 @@
 package fa.gs.portfolio;
 
 import fa.gs.portfolio.app.base.DatabaseInitializer;
+import fa.gs.portfolio.app.base.api.ApiEndpointsExporter;
+import fa.gs.portfolio.app.productos.ProductosApiEndpointsExporter;
 import fa.gs.portfolio.app.productos.ProductosDatabaseInitializer;
+import fa.gs.portfolio.app.stock.StockApiEndpointsExporter;
 import fa.gs.portfolio.app.stock.StockDatabaseInitializer;
 import java.util.Objects;
 import org.springframework.beans.factory.BeanFactory;
@@ -39,11 +42,17 @@ public class Main implements ApplicationRunner {
         // App: productos.
         if (Objects.equals(appParameters.getAppName(), "productos")) {
             try {
+                // Inicializar base de datos.
                 DatabaseInitializer initializer = beansFactory.getBean(ProductosDatabaseInitializer.class);
                 initializer.init();
                 log.info("inicializacion de base de datos para servicio: productos [OK]");
+
+                // Exportar endpoints.
+                ApiEndpointsExporter exporter = beansFactory.getBean(ProductosApiEndpointsExporter.class);
+                exporter.export();
+                log.info("exportacion de endpoints para servicio: productos [OK]");
             } catch (Throwable thr) {
-                log.error(thr, "Ocurrio un error inicializando servicio de base de datos para servicio: productos.");
+                log.error(thr, "Ocurrio un error inicializando servicio: productos.");
                 throw new Exception("error", thr);
             }
         }
@@ -51,11 +60,17 @@ public class Main implements ApplicationRunner {
         // App: stock.
         if (Objects.equals(appParameters.getAppName(), "stock")) {
             try {
+                // Inicializar base de datos.
                 DatabaseInitializer initializer = beansFactory.getBean(StockDatabaseInitializer.class);
                 initializer.init();
                 log.info("inicializacion de base de datos para servicio: stock [OK]");
+
+                // Exportar endpoints.
+                ApiEndpointsExporter exporter = beansFactory.getBean(StockApiEndpointsExporter.class);
+                exporter.export();
+                log.info("exportacion de endpoints para servicio: stock [OK]");
             } catch (Throwable thr) {
-                log.error(thr, "Ocurrio un error inicializando servicio de base de datos para servicio: stock.");
+                log.error(thr, "Ocurrio un error inicializando servicio: stock.");
                 throw new Exception("error", thr);
             }
         }

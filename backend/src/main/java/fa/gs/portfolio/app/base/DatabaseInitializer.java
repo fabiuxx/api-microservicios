@@ -17,6 +17,6 @@ public interface DatabaseInitializer {
      *
      * @throws Throwable Si ocurre algun error.
      */
-    abstract public void init() throws Throwable;
+    void init() throws Throwable;
 
 }

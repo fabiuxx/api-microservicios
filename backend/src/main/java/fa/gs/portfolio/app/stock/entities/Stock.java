@@ -19,7 +19,7 @@ import lombok.Data;
  * @author Fabio A. González Sosa
  */
 @Entity
-@Table(name = "producto", schema = "app")
+@Table(name = "stock", schema = "app")
 @Data
 public class Stock implements Serializable {
 
@@ -34,11 +34,11 @@ public class Stock implements Serializable {
     @Basic(optional = false)
     private Integer idProducto;
 
-    @Column(name = "descripcion", nullable = false)
+    @Column(name = "precio", nullable = false)
     @Basic(optional = false)
     private Integer precio;
 
-    @Column(name = "categoria", nullable = false)
+    @Column(name = "stock", nullable = false)
     @Basic(optional = false)
     private Integer stock;
 
