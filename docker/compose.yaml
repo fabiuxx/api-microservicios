@@ -1,0 +1,14 @@
+version: '3.0'
+services:
+  simple_microservice_arch:
+    container_name: simple_microservice_arch
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    environment:
+      - OTLP_INGEST_KEY=${OTLP_INGEST_KEY}
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+      - "9000:9000"
+      - "9001:9001"

@@ -1,1 +1,0 @@
-java -server -jar ./target/api-microservices-0.0.1.jar --server.port=8888 --app.name="%1"

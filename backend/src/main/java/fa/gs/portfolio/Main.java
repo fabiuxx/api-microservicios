@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.Banner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
@@ -32,9 +33,9 @@ public class Main implements ApplicationRunner {
      * @param args Argumentos de linea de comandos.
      */
     public static void main(String[] args) {
-        new SpringApplicationBuilder(Main.class)
-                .bannerMode(Banner.Mode.OFF)
-                .run(args);
+        SpringApplication app = new SpringApplication(Main.class);
+        app.setBannerMode(Banner.Mode.OFF);
+        app.run(args);
     }
 
     @Override
